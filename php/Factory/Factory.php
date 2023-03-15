@@ -1,13 +1,24 @@
 <?php
 
+/**
+ * 工厂方法模式
+ * 创建一个抽象工厂来约定创建对象的方法，除了创建对象的方法，可以定义并实现其他共同的行为。
+ * 由客户端代码来决定创建哪个工厂
+ * 有新定义类别的对象时，客户端直接调用，不用再修改原有创建方法
+ * 当对象类别过多时，创建的工厂也变多。
+ */
 abstract Class AbstractFactory {
-    abstract static function create();
+    abstract function create();
 
+    public function chat(string $msg) {
+        $im = $this->create();
+        $im->send($msg);
+    }
 }
 
 class WechatFactory extends AbstractFactory {
 
-    static function create()
+    public function create()
     {
         return new WeChat();
     }
@@ -16,7 +27,7 @@ class WechatFactory extends AbstractFactory {
 
 class FeishuFactory extends AbstractFactory {
 
-    static function create()
+    public function create()
     {
         return new Feishu();
     }
@@ -42,5 +53,6 @@ class Feishu implements  IM {
     }
 }
 
-$im = WechatFactory::create();
-$im->send("hello ?");
+
+$factory = new WechatFactory();
+$factory->chat("hello ?");
