@@ -1,9 +1,12 @@
 package main
 
 import (
-	"Generator"
+	"Singleton"
+	"fmt"
 )
 
 func main() {
-	Generator.Execute()
+	//Generator.Execute()
+	instance := Singleton.GetInstance()
+	fmt.Print(instance)
 }
