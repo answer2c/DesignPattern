@@ -1,7 +1,9 @@
 package main
 
-import "Factory"
+import (
+	"Generator"
+)
 
 func main() {
-	Factory.Execute3()
+	Generator.Execute()
 }
